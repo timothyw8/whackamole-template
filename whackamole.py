@@ -1,7 +1,9 @@
+#import pygame and random
 import pygame
 import random
 
 def main():
+    #create draw_grid method
     def draw_grid():
         for i in range(1, 16):
             pygame.draw.line(screen, (0, 0, 0), (0, i*(512/16)), (640, i*(512/16)), width=1)
@@ -27,10 +29,13 @@ def main():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                #if mouse click
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     x_coord = event.pos[0]
                     y_coord = event.pos[1]
+                    #if within square 32 by 32
                     if x_coord < (mole_coordX+32) and y_coord < (mole_coordY+32) and x_coord>mole_coordX and y_coord>mole_coordY:
+                        #cover old mole and blit new mole in random location
                         pygame.draw.rect(screen, "light green", pygame.Rect(mole_coordX, mole_coordY, 25,25))
                         mole_coordX = random.randrange(2,640,32)
                         mole_coordY = random.randrange(2,512,32)
